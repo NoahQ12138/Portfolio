@@ -6,6 +6,7 @@ const projects = [
     id: "search-rescue-robot",
     name: "Autonomous Search & Rescue Robot",
     image: "/project1.jpg",
+    extraImages: ["/project1-detail1.jpg", "/project1-detail2.jpg"],
     description:
       "Designed and built an autonomous rescue robot capable of following a marked path, locating a LEGO figure, retrieving it with a vacuum-based pickup system, delivering it to a safe zone, and returning to its start position. The system combined Raspberry Pi vision processing, Arduino motor control, and integrated mechanical, electrical, and software design."
   },
@@ -13,6 +14,7 @@ const projects = [
     id: "robotic-hand",
     name: "Gesture-Tracking Robotic Hand",
     image: "/project2.jpg",
+    extraImages: ["/project2-detail1.jpg", "/project2-detail2.jpg"],
     description:
       "Developed a robotic hand that mimics human hand motion using computer vision, Arduino control, and custom 3D-printed mechanical components. The project combined SolidWorks design, prototyping, and Python-based gesture recognition into a functional robotics system."
   },
@@ -20,6 +22,7 @@ const projects = [
     id: "wasteman-810",
     name: "Wasteman 810 Sorting Robot",
     image: "/project3.jpg",
+    extraImages: ["/project3-detail1.jpg", "/project3-detail2.jpg"],
     description:
       "Built a LEGO EV3-based waste collection and sorting robot that swept up objects, transported them by conveyor, detected color, and sorted them into bins while navigating a controlled environment. This project emphasized mechanical design, system integration, and iterative testing to improve reliability."
   }
@@ -67,7 +70,7 @@ function HomePage() {
               <p className="card-label">Student of University of Waterloo</p>
               <h3>Professional Portfolio</h3>
               <p>
-                Hello, and welcome to my personal portfolio!.
+                Hello, and welcome to my personal portfolio!
               </p>
             </div>
           </div>
@@ -195,6 +198,18 @@ function ProjectPage() {
             alt={project.name}
             className="project-detail-image"
           />
+        </div>
+
+        <div className="project-extra-images">
+          {project.extraImages.map((img, index) => (
+            <div className="project-extra-image-card" key={index}>
+              <img
+                src={img}
+                alt={`${project.name} extra view ${index + 1}`}
+                className="project-extra-image"
+              />
+            </div>
+          ))}
         </div>
 
         <p className="section-label">Project</p>
