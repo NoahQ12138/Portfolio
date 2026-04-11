@@ -164,12 +164,6 @@ a {
   overflow: hidden;
 }
 
-.portrait-placeholder span {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 5rem;
-  color: rgba(31, 31, 27, 0.6);
-}
-
 .portfolio-image {
   width: 100%;
   height: 100%;
@@ -242,6 +236,65 @@ a {
   line-height: 1.7;
 }
 
+/* EXPERIENCE */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.experience-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 10px 24px rgba(31, 31, 27, 0.04);
+  text-align: left;
+}
+
+.experience-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.experience-top h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  color: var(--text);
+  text-align: left;
+}
+
+.experience-role {
+  color: #96795a;
+  font-size: 1.02rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.experience-date {
+  color: var(--muted);
+  font-size: 0.98rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.experience-points {
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: left;
+}
+
+.experience-points li {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
 /* PROJECTS */
 .project-grid {
   display: grid;
@@ -275,7 +328,7 @@ a {
 
 .project-image-placeholder {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 14;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 18px;
@@ -298,10 +351,6 @@ a {
   margin: 0;
   line-height: 1.3;
   min-height: 3.5rem;
-}
-
-.project-card p {
-  color: var(--muted);
 }
 
 /* CONTACT */
@@ -368,45 +417,7 @@ a {
   text-decoration: underline;
 }
 
-.project-detail-image-wrapper {
-  width: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  margin-bottom: 28px;
-  border: 1px solid var(--line);
-  background: var(--card);
-}
-
-.project-detail-image {
-  width: 100%;
-  max-height: 500px;
-  object-fit: cover;
-  display: block;
-}
-
-.project-extra-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-bottom: 28px;
-}
-
-.project-extra-image-card {
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--card);
-  aspect-ratio: 16 / 10;
-}
-
-.project-extra-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.project-page .section-label {
+.project-detail-label {
   text-align: center;
 }
 
@@ -419,13 +430,35 @@ a {
   text-align: center;
 }
 
+.project-extra-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 28px 0;
+}
+
+.project-extra-image-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--card);
+  aspect-ratio: 16 / 14;
+}
+
+.project-extra-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .project-detail-description {
   font-size: 1.08rem;
   line-height: 1.8;
   color: var(--muted);
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0;
+  text-align: left;
 }
 
 /* RESPONSIVE */
@@ -463,7 +496,8 @@ a {
   .hero-card,
   .about-card,
   .contact-card,
-  .project-card {
+  .project-card,
+  .experience-card {
     padding: 20px;
   }
 
@@ -473,6 +507,16 @@ a {
 
   .project-card h3 {
     min-height: auto;
+  }
+
+  .experience-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .experience-date {
+    white-space: normal;
+    text-align: left;
   }
 
   .project-extra-images {
