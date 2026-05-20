@@ -41,7 +41,21 @@ const projects = [
     <br /><br />Control logic was implemented through modular software functions that managed navigation, object detection, sorting, and return-to-start behavior. During development, design decisions were made to balance system complexity and reliability, including simplifying the overall mechanism by removing unnecessary components such as an additional robotic arm.
     <br /><br />This project strengthened understanding of multi-subsystem robotic design, sensor integration, and feedback control, while emphasizing the importance of iterative design and system reliability in constrained environments.
     </>
- }
+  },
+  {
+    id: "valorant-ai-coach",
+    name: "Valorant AI Coach",
+    coverImage: "AI_Coach_Home.png",
+    extraImages: ["/AI_Summary.png", "/AI_Drills.png"],
+    description:
+    <>
+    AI Coach is a full-stack web application that automates Valorant gameplay review using multimodal AI analysis. Users can securely upload match recordings and receive structured coaching reports containing performance scores, timestamped feedback, strengths and weaknesses analysis, and personalized practice drill recommendations.
+    <br /><br />The platform is built with a decoupled React/TypeScript frontend and Node.js/Express backend. The frontend handles authentication, uploads, processing status tracking, match history, and report visualization, while the backend manages API orchestration, database persistence, cloud storage workflows, asynchronous processing, and AI integration.
+    <br /><br />Key features include JWT-based authentication with protected routes, direct video uploads through signed cloud storage URLs, asynchronous background processing using pg-boss workers, and a real-time style processing pipeline that tracks analysis progress without blocking the user experience. Uploaded gameplay footage is processed with FFmpeg to extract representative frames, which are then analyzed using multimodal AI models to generate structured JSON-based coaching reports.
+    <br /><br />The application also includes timestamped coaching feedback linked to gameplay moments, category-based evaluations for areas such as aim, positioning, and decision-making, embedded video playback inside reports, and a match history dashboard where users can review previously analyzed games and track processing states.
+    <br /><br />Built with React, TypeScript, Node.js, Express, PostgreSQL, Prisma, and Supabase Storage, the project demonstrates full-stack system design across authentication, cloud storage, background job queues, multimedia preprocessing, typed APIs, and AI-powered analysis workflows.
+    </>
+  }
 ];
 
 function HomePage() {
