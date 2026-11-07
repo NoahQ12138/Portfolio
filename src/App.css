@@ -461,6 +461,42 @@ a {
   text-align: left;
 }
 
+.robotic-dog-description h2 {
+  margin: 36px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.robotic-dog-description h2:first-child {
+  margin-top: 0;
+}
+
+.robotic-dog-description h3 {
+  margin: 24px 0 8px;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.robotic-dog-description p,
+.robotic-dog-description ul {
+  margin-bottom: 18px;
+}
+
+.robotic-dog-description ul {
+  padding-left: 24px;
+}
+
+.robotic-dog-description li {
+  margin-bottom: 8px;
+}
+
+.robotic-dog-description code {
+  font-size: 0.95em;
+  overflow-wrap: anywhere;
+}
+
 /* RESPONSIVE */
 @media (max-width: 960px) {
   .hero-grid {

@@ -60,8 +60,79 @@ const projects = [
     id: "robotic-dog",
     name: "Robotic Dog",
     coverImage: "/Cover image dog.png",
-    extraImages: [],
-    description: "Project details coming soon."
+    extraImages: ["/front dog.png", "/IMG_7086.png"],
+    description: (
+      <div className="robotic-dog-description">
+        <h2>12-DOF Quadruped Robotic Dog</h2>
+        <p>I designed and built a 12-DOF quadruped robotic dog as a multidisciplinary project combining mechanical design, embedded systems, motor control, sensing, power electronics, and computer vision. The goal was to create a platform capable of coordinated walking, environmental sensing, and eventually autonomous behaviors such as obstacle avoidance and target following.</p>
+
+        <h2>Mechanical and Motor System</h2>
+        <p>The robot uses 12 high-torque Miuzei 996 servos, with three independently controlled joints on each of the four legs:</p>
+        <ul>
+          <li><strong>Shoulder joint:</strong> controls lateral positioning of the leg</li>
+          <li><strong>Main leg joint:</strong> controls the primary forward/backward leg motion</li>
+          <li><strong>Lower/foot joint:</strong> controls extension, lifting, and placement of the foot</li>
+        </ul>
+        <p>The servos are controlled through PCA9685 PWM servo drivers, allowing the Arduino to generate synchronized commands for all 12 motors without relying on individual PWM-capable microcontroller pins.</p>
+        <p>During the current forward gait, the shoulder joints are kept near fixed positions for stability while the main and lower joints perform most of the walking motion. This reduced the number of variables that needed to be tuned while developing the initial gait.</p>
+
+        <h2>Power Distribution</h2>
+        <p>Power delivery was an important part of the design because the servos require significantly more current than the microcontrollers can provide.</p>
+        <p>The servos operate at approximately 6 V and can draw roughly 0.5 to 0.9 A during normal movement, with currents approaching 2.5 A per servo near stall. With 12 servos, the theoretical worst-case current can approach 30 A at 6 V.</p>
+        <p>To handle these loads, I designed the robot around a 3S 11.1 V LiPo battery, or roughly a 12 V system, with separate high-current voltage regulators stepping the supply down to the servo voltage. The servo power was distributed across multiple regulators rather than powering all motors from a single converter. The control electronics and servo system share a common ground while keeping the high-current servo supply separate from the microcontroller power rail.</p>
+        <p>This helped prevent voltage drops and microcontroller resets when several motors accelerated at the same time.</p>
+
+        <h2>Embedded Control</h2>
+        <p>An Arduino acts as the low-level motion controller. Embedded C++ firmware handles:</p>
+        <ul>
+          <li>Servo calibration</li>
+          <li>Joint limits</li>
+          <li>Leg positioning</li>
+          <li>Gait timing</li>
+          <li>Movement sequencing</li>
+          <li>Communication with the higher-level vision system</li>
+        </ul>
+        <p>Rather than commanding individual servo positions manually, movement is organized into gait phases such as lifting, swinging, placing, and pushing the leg.</p>
+        <p>This separation allowed the Arduino to focus on predictable real-time motor control while higher-level systems could decide what the robot should do.</p>
+
+        <h2>Sensor Integration</h2>
+        <p>The robot includes several sensors that provide information about its surroundings and physical state.</p>
+        <h3>IMU</h3>
+        <p>The IMU measures orientation and motion of the robot. It can be used to detect body tilt and eventually provide feedback for balancing and terrain compensation.</p>
+        <h3>Ultrasonic Sensor</h3>
+        <p>The ultrasonic sensor provides short-range distance measurements for basic obstacle detection. This gives the robot a simple method of detecting objects directly in front of it without relying entirely on vision.</p>
+        <h3>ESP32-S3 Camera</h3>
+        <p>A Freenove ESP32-S3 CAM is used as the robot's vision interface. The ESP32-S3 provides Wi-Fi connectivity and streams camera data wirelessly for computer vision processing.</p>
+
+        <h2>Computer Vision</h2>
+        <p>The vision architecture separates image processing from real-time motor control.</p>
+        <p>The ESP32-S3 camera streams images over Wi-Fi to Python running on a computer, where tools such as OpenCV and object-detection models can process the video feed. Instead of sending raw vision information directly to the motors, the vision system converts detections into simple high-level commands such as:</p>
+        <p><code>FORWARD | LEFT | RIGHT | STOP</code></p>
+        <p>These commands are then passed back to the embedded control system, which executes the appropriate gait.</p>
+        <p>This architecture allows computationally heavier vision algorithms to run externally while the Arduino remains responsible for reliable and time-sensitive servo control.</p>
+
+        <h2>Main Challenge: Developing a Stable Forward Gait</h2>
+        <p>One of the hardest parts of the project was getting all four legs to move in the correct sequence.</p>
+        <p>Moving a single leg was relatively straightforward, but walking requires multiple joints to remain synchronized while the robot maintains enough contact with the ground to support its weight. Early tests resulted in legs moving against each other, incorrect servo directions, unstable body movement, and the robot dragging its feet instead of moving forward.</p>
+        <p>The mechanical symmetry of the robot also created a software challenge. A command that extended a left-side joint could require the opposite servo direction on the right side because the mechanisms were mirrored.</p>
+        <p>I addressed this by first calibrating every servo individually and defining a common logical coordinate system rather than controlling each motor directly. Left and right legs could then use the same gait logic while the software handled their mirrored servo directions.</p>
+        <p>Instead of attempting a complete walking cycle immediately, I divided each step into smaller phases:</p>
+        <p><strong>Lift → Swing Forward → Place → Push Back</strong></p>
+        <p>Each leg was tested independently before combining the movements into a coordinated crawl gait. Servo angles, timing, extension offsets, and leg order were then adjusted through repeated physical testing.</p>
+        <p>A major improvement came from keeping the shoulder joints mostly fixed during early gait development. This reduced the initial walking problem from coordinating 12 changing joints simultaneously to primarily coordinating the eight main and lower-leg joints.</p>
+        <p>Through repeated testing and tuning, the robot progressed from individual leg movements to a coordinated forward gait.</p>
+
+        <h2>Synchronizing Vision and Physical Movement</h2>
+        <p>Another challenge was connecting computer vision to a robot that moves much slower than the camera updates.</p>
+        <p>The vision system can generate new detections many times while the robot is still completing a single physical step. Reacting to every camera frame would cause the robot to constantly interrupt its gait and change direction.</p>
+        <p>To solve this, I separated decision-making from motion execution. Computer vision determines the desired direction, while the embedded controller completes coordinated gait phases before responding to new movement commands.</p>
+        <p>This prevents noisy or rapidly changing detections from directly controlling individual motors and creates smoother, more predictable motion.</p>
+
+        <h2>What I Learned</h2>
+        <p>This project gave me experience integrating an entire robotic system rather than developing each subsystem independently. I worked across mechanical design, high-current power distribution, embedded C++, motor control, sensor integration, wireless communication, and computer vision.</p>
+        <p>The biggest lesson was that getting individual components working is only the first step. The difficult part of robotics is making the mechanical, electrical, sensing, and software systems operate together reliably in the real world.</p>
+      </div>
+    )
   }
 ];
 
@@ -342,7 +413,7 @@ function ProjectPage() {
           ))}
         </div>
 
-        <p className="project-detail-description">{project.description}</p>
+        <div className="project-detail-description">{project.description}</div>
       </div>
     </div>
   );
