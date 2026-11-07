@@ -55,6 +55,13 @@ const projects = [
     <br /><br />The application also includes timestamped coaching feedback linked to gameplay moments, category-based evaluations for areas such as aim, positioning, and decision-making, embedded video playback inside reports, and a match history dashboard where users can review previously analyzed games and track processing states.
     <br /><br />Built with React, TypeScript, Node.js, Express, PostgreSQL, Prisma, and Supabase Storage, the project demonstrates full-stack system design across authentication, cloud storage, background job queues, multimedia preprocessing, typed APIs, and AI-powered analysis workflows.
     </>
+  },
+  {
+    id: "robotic-dog",
+    name: "Robotic Dog",
+    coverImage: "/Cover image dog.png",
+    extraImages: [],
+    description: "Project details coming soon."
   }
 ];
 
