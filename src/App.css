@@ -430,6 +430,37 @@ a {
   text-align: center;
 }
 
+.project-video-card {
+  margin: 28px 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.project-video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #111;
+  object-fit: contain;
+}
+
+.project-video-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 14px 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.project-video-caption a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .project-extra-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

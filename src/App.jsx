@@ -133,6 +133,22 @@ const projects = [
         <p>The biggest lesson was that getting individual components working is only the first step. The difficult part of robotics is making the mechanical, electrical, sensing, and software systems operate together reliably in the real world.</p>
       </div>
     )
+  },
+  {
+    id: "video-test-project",
+    name: "Video Test Project",
+    coverImage: "/video-test-poster.jpg",
+    extraImages: [],
+    videos: [
+      {
+        src: "/video-test.mp4",
+        poster: "/video-test-poster.jpg",
+        title: "Project demo",
+      },
+    ],
+    description: (
+      <p>A sample project featuring a short video demo. Use the player above to watch the clip.</p>
+    ),
   }
 ];
 
@@ -401,6 +417,27 @@ function ProjectPage() {
         <p className="section-label project-detail-label">Project</p>
         <h1 className="project-detail-title">{project.name}</h1>
 
+        {project.videos?.map((video) => (
+          <figure className="project-video-card" key={video.src}>
+            <video
+              className="project-video"
+              controls
+              playsInline
+              preload="metadata"
+              poster={video.poster}
+              aria-label={`${project.name}: ${video.title}`}
+            >
+              <source src={video.src} type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <figcaption className="project-video-caption">
+              <span>{video.title}</span>
+              <a href={video.src} download>Download video</a>
+            </figcaption>
+          </figure>
+        ))}
+
+        {project.extraImages.length > 0 && (
         <div className="project-extra-images">
           {project.extraImages.map((img, index) => (
             <div className="project-extra-image-card" key={index}>
@@ -412,6 +449,7 @@ function ProjectPage() {
             </div>
           ))}
         </div>
+        )}
 
         <div className="project-detail-description">{project.description}</div>
       </div>
