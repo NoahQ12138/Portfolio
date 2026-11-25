@@ -136,9 +136,13 @@ const projects = [
   },
   {
     id: "video-test-project",
-    name: "Video Test Project",
+    name: "Ball-and-Beam Digital Control System",
     coverImage: "/video-test-poster.jpg",
     extraImages: [],
+    diagram: {
+      src: "/ball-and-beam-control-diagram.png",
+      alt: "Ball-and-beam control system block diagram showing the outer PID, digital controller, motor, beam and ball gains, and position feedback.",
+    },
     videos: [
       {
         src: "/video-test.mp4",
@@ -147,7 +151,7 @@ const projects = [
       },
     ],
     description: (
-      <p>A sample project featuring a short video demo. Use the player above to watch the clip.</p>
+      <p>A video demonstration and control diagram of the ball-and-beam digital control system.</p>
     ),
   }
 ];
@@ -436,6 +440,17 @@ function ProjectPage() {
             </figcaption>
           </figure>
         ))}
+
+        {project.diagram && (
+          <figure className="project-diagram">
+            <a href={project.diagram.src} target="_blank" rel="noopener noreferrer">
+              <img src={project.diagram.src} alt={project.diagram.alt} />
+            </a>
+            <figcaption>
+              Control system diagram. Select the image to view it at full size.
+            </figcaption>
+          </figure>
+        )}
 
         {project.extraImages.length > 0 && (
         <div className="project-extra-images">

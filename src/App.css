@@ -461,6 +461,26 @@ a {
   text-decoration: underline;
 }
 
+.project-diagram {
+  margin: 28px 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.project-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-diagram figcaption {
+  padding: 14px 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .project-extra-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
