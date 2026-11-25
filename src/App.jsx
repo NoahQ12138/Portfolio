@@ -151,7 +151,66 @@ const projects = [
       },
     ],
     description: (
-      <p>A video demonstration and control diagram of the ball-and-beam digital control system.</p>
+      <div className="project-writeup">
+        <h2>Ball &amp; Beam Control</h2>
+        <p><strong>Embedded Systems | Control Systems | Mechatronics</strong></p>
+
+        <h3>Project Overview</h3>
+        <p>Designed, simulated, implemented, and tuned a digital feedback control system to regulate the position of a ball on a motor-driven beam. The project combined mathematical modelling, system identification, discrete-time controller design, embedded programming, and physical hardware testing.</p>
+        <p>A cascaded feedback control architecture was implemented to regulate both the angular position of the beam and the linear position of the ball. The system was initially modelled and simulated in MATLAB/Simulink before being implemented on an Arduino-based platform for real-time operation.</p>
+
+        <h3>Objective</h3>
+        <p>The primary objective was to develop a stable closed-loop control system capable of moving a ball between desired reference positions while minimizing overshoot, settling time, and steady-state error.</p>
+        <p>The controller also needed to account for real-world nonlinearities, including motor stiction, gravitational torque, actuator limitations, and differences between simulated and physical system responses.</p>
+
+        <h3>Hardware &amp; Software</h3>
+        <h4>Hardware</h4>
+        <ul>
+          <li>Arduino microcontroller</li>
+          <li>geeWhiz hardware interface</li>
+          <li>DC motor and gearbox</li>
+          <li>Motor-driven beam assembly</li>
+          <li>Angular position sensor</li>
+          <li>Ball position sensor</li>
+          <li>14-bit analog-to-digital conversion</li>
+        </ul>
+        <h4>Software</h4>
+        <ul>
+          <li>MATLAB: mathematical modelling, system identification, and controller design</li>
+          <li>Simulink: closed-loop simulation and performance analysis</li>
+          <li>Arduino IDE: embedded controller implementation</li>
+          <li>C/C++: real-time control algorithms and sensor processing</li>
+          <li>Microsoft Excel: experimental data analysis and visualization</li>
+        </ul>
+
+        <h3>System Identification &amp; Modelling</h3>
+        <p>Experimental testing was performed to characterize the motor's dynamic response and identify parameters such as motor gain and time constant.</p>
+        <p>Mathematical transfer functions were developed to represent the motor and ball-and-beam dynamics. These models were integrated into Simulink to predict system behaviour and evaluate controller performance before deployment onto the physical hardware.</p>
+
+        <h3>Controller Design</h3>
+        <p>A cascaded control architecture was developed using two interconnected feedback loops:</p>
+        <ul>
+          <li><strong>Inner control loop:</strong> Regulates the angular position of the motor-driven beam.</li>
+          <li><strong>Outer control loop:</strong> Regulates the linear position of the ball by generating the desired beam angle.</li>
+        </ul>
+        <p>Continuous-time control models were converted into discrete-time representations for digital implementation. The final control algorithm operated with a sampling period of 5 ms, corresponding to a sampling frequency of 200 Hz.</p>
+        <p>Controller parameters and beam-angle limits were iteratively adjusted to improve stability, reference tracking, and transient response.</p>
+
+        <h3>Engineering Challenges &amp; Solutions</h3>
+        <h4>Motor Stiction</h4>
+        <p>Experimentally measured the minimum voltage required to overcome static friction in both clockwise and counterclockwise directions. Direction-dependent compensation was introduced to improve motor responsiveness.</p>
+        <h4>Gravitational Torque</h4>
+        <p>The addition of the beam introduced an asymmetric load on the motor. A holding voltage of −0.35 V was experimentally determined to counteract the gravitational torque, with additional directional offsets used to compensate for asymmetric motor behaviour.</p>
+        <h4>Overshoot and Oscillation</h4>
+        <p>Excessive beam inclination caused the ball to accelerate too quickly and overshoot its desired position. The beam-angle limit was reduced from ±0.70 rad to ±0.50 rad to moderate the control response.</p>
+        <h4>Simulation-to-Hardware Integration</h4>
+        <p>The simulated controller was translated into embedded C/C++ code, incorporating real-time sensor feedback, discrete-time control calculations, actuator saturation, and nonlinear compensation.</p>
+
+        <h3>Project Outcome</h3>
+        <p>Implemented and tested a cascaded digital feedback control system on a physical ball-and-beam platform, using reference positions of 10 cm and 25 cm to evaluate tracking performance.</p>
+        <p>The project demonstrated the complete control system development process, from experimental system identification and mathematical modelling to simulation, embedded implementation, hardware integration, and iterative controller tuning.</p>
+        <p>It also demonstrated the importance of compensating for physical nonlinearities that are not fully represented by ideal mathematical models.</p>
+      </div>
     ),
   }
 ];

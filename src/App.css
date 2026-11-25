@@ -512,7 +512,9 @@ a {
   text-align: left;
 }
 
-.robotic-dog-description h2 {
+.robotic-dog-description h2,
+.project-writeup h2,
+.project-writeup h3 {
   margin: 36px 0 14px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.4rem, 3vw, 1.8rem);
@@ -520,26 +522,32 @@ a {
   color: var(--text);
 }
 
-.robotic-dog-description h2:first-child {
+.robotic-dog-description h2:first-child,
+.project-writeup h2:first-child {
   margin-top: 0;
 }
 
-.robotic-dog-description h3 {
+.robotic-dog-description h3,
+.project-writeup h4 {
   margin: 24px 0 8px;
   font-size: 1.15rem;
   color: var(--text);
 }
 
 .robotic-dog-description p,
-.robotic-dog-description ul {
+.robotic-dog-description ul,
+.project-writeup p,
+.project-writeup ul {
   margin-bottom: 18px;
 }
 
-.robotic-dog-description ul {
+.robotic-dog-description ul,
+.project-writeup ul {
   padding-left: 24px;
 }
 
-.robotic-dog-description li {
+.robotic-dog-description li,
+.project-writeup li {
   margin-bottom: 8px;
 }
 
